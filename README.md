@@ -1,2 +1,2 @@
 # educationFrontend
-hamma o'zini page sini Routerga chaqirib birlashtirsin
+hamma o'zini page ni Routerga chaqirib birlashtirsin
