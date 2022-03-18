@@ -2,5 +2,19 @@
   .height{
       height: 1000px;
       background-size: 100%;
+      background: rgb(222,252,242);
+      background: radial-gradient(circle, rgba(222,252,242,0.969625350140056) 0%, rgba(238,244,238,0.9640231092436975) 50%, rgba(234,242,239,1) 100%);
   }
-  
+  .pupils{
+    /* background-color: blueviolet; */
+    overflow-y: scroll;
+    height: 200px;
+  }
+  .payInput{
+    border: none !important ;
+    background-color: transparent !important;
+    border-bottom: 1px solid rgb(230, 222, 222) !important;
+    border-radius: 0 !important;
+  }
+
+ 
