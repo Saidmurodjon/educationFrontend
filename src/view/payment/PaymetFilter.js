@@ -80,7 +80,7 @@ function PaymentFilter(){
                 
         //     },[])
 
-        useEffect(()=>{
+      useEffect(()=>{
             setPupilPay(students)
             pupils.map(val=>{
                
@@ -88,12 +88,13 @@ function PaymentFilter(){
                         if(a.month==dateObj.getMonth()){
                           // 1-yol
 
-                       // for (let i = 0; i < students.length; i++) {
-                          //   if(val._id===students[i]._id){
-                          //     console.log(students[i]);
-                          //     students.splice(i,1)
-                          //   }
-                          // }
+                       for (let i = 0; i < students.length; i++) {
+                            if(val._id===students[i]._id){
+                              // console.log(students[i]);
+                              students.splice(i,1)
+                               setTest(students)
+                            }
+                          }
                           
                           // 2-yo'l
 
@@ -105,20 +106,17 @@ function PaymentFilter(){
                           // })
 
                           // 3-yo'l
-                          const p=students.findIndex(x=>x._id===val._id)
-                          // console.log(p);
-                          students.splice(p,1)
-                          // !delete students[p]
+                          // const p=students.findIndex(x=>x._id===val._id)
+                          // students.splice(p,1)
+                          // // !delete students[p]
+                          // setTest(students)
                           
 
                         } 
                       })
-                      // }
-                    // const a=val.paymet.find((a)=>a.month==(dateObj.getMonth()+1))
-                    // console.log(val);
+                    
                     })
-                    setTest(students)
-                  },[pupilPay])
+      },[pupilPay])
              
     return(
         <>

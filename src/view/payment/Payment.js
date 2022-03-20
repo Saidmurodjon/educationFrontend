@@ -3,64 +3,72 @@ import axios from "axios"
 import './Payment.css';
 // var dateObj = new Date();
 // import PaymentFilter from "./PaymetFilter";
+
 function Payment(){
-  
-  const [input, setInput]=useState('')
-  const[pupil,setPupil]=useState([])
+
+  // bazadan kelgan malumotlar users groups
   const [users, setUsers]=useState([])
-  const [show, setShow] = useState(false);
+  const[groups,setGroups]=useState([])
 
-  const [look, setLook] = useState('');
+  // search innputdan kelgan malumot
+  const [input, setInput]=useState('')
 
+// bazadan kelgan malumotni search input bo'yicha filter natijasi.pupil map qilinadi .
+  const[pupil,setPupil]=useState([])
+
+// pupil map qilingandai tabledagi tanlangan ixtiyoriy o'quvchi
   const[student,setStudent]=useState([])
-  
+
+  // to'lov malumotlari yuboriladi  pupilPay
   const[pupilPay,setPupilPay]=useState({
     month:'',
     cost:''
   })
-  const[groups,setGroups]=useState([])
+  // guruhlarni o'zaro solishtirish uchun asosan guruh to'lov qiymatini olish uchun
   const[group,setGroup]=useState([])
+
+
   const options= [
-      {
-        name: 'yanvar',
-        value: '1',
-      },
-      {
-        name: 'fevral',
-        value: '2',
-      },
-      {
-        name: 'mart',
-        value: '3',
-      },
-      {
-        name: 'aprel',
-        value: '4',
-      },
-         {
-        name: 'may',
-        value: '5',
-      },
-      {
-        name: 'iyun',
-        value: '6',
-      },
-      {
-        name: 'iyul',
-        value: '7',
-      },
-      {
-        name: 'avgust',
-        value: '8',
-      },
-      {
-          name: 'sentabr',
-          value: '9',
-        },
-        {
-          name: 'oktabr',
-          value: '10',
-        },
+    {
+      name: 'yanvar',
+      value: '1',
+    },
+    {
+      name: 'fevral',
+      value: '2',
+    },
+    {
+      name: 'mart',
+      value: '3',
+    },
+    {
+      name: 'aprel',
+      value: '4',
+    },
+    {
+      name: 'may',
+      value: '5',
+    },
+    {
+      name: 'iyun',
+      value: '6',
+    },
+    {
+      name: 'iyul',
+      value: '7',
+    },
+    {
+      name: 'avgust',
+      value: '8',
+    },
+    {
+      name: 'sentabr',
+      value: '9',
+    },
+    {
+      name: 'oktabr',
+      value: '10',
+    },
         {
           name: 'noyabr',
           value: '11',
@@ -69,33 +77,36 @@ function Payment(){
           name: 'dekabr',
           value: '12',
         },
-    ]
-  useEffect(()=>{
-    async function getUsers(){
-      const res = await axios.get('https://edu-uz.herokuapp.com/pupils')
-      
-        setUsers(res.data)
-     }
-     getUsers() 
+      ]
+      // style uchun
+      const [show, setShow] = useState(false);
+      const [look, setLook] = useState('');
+
+      useEffect(()=>{
+        async function getUsers(){
+          const res = await axios.get('https://edu-uz.herokuapp.com/pupils')
+          
+          setUsers(res.data)
+        }
+        getUsers() 
         
-    },[])
-     useEffect(()=>{
-            async function getGroups(){
-              const res = await axios.get('https://edu-uz.herokuapp.com/eduGroup')
-              
-                setGroups(res.data)
-             }
-             getGroups() 
+      },[])
+      useEffect(()=>{
+        async function getGroups(){
+          const res = await axios.get('https://edu-uz.herokuapp.com/eduGroup')
+          
+          setGroups(res.data)
+        }
+        getGroups() 
                 
-            },[])
-// qidiruvni berkitish
-
-
-    useEffect(()=>{ 
-      setPupil([])
-      if(input){
-        // console.log("ishladi");
-        setLook('pupils')
+      },[])
+      // qidiruvni berkitish
+      
+      
+      useEffect(()=>{ 
+        setPupil([])
+        if(input){
+          setLook('pupils')
       }
       if(!input){
        setLook('d-none')
@@ -140,8 +151,9 @@ const studentPay=async(student)=>{
       alert("Maydonni to'ldiring !")
     }
   
-    if(res.request.status=="200"){  
+    if(res.request.status==200){  
       alert("To'lov muvaffqiyatli amalga oshirildi")
+      // console.log( typeof res.request.status);
       setShow(!show); 
     }else{
       alert( "To'lov amalga oshirilmadi")
@@ -150,12 +162,11 @@ const studentPay=async(student)=>{
 
     return(
        <>
-      
+      {/* qidiru oynasi */}
           <div className="container">
               <div className="row justify-content-center">
-                <div className="col-md-10">
-                {/* <h4>Payment Page</h4> */}
-                <div className="container mt-2">
+                <div className="col-md-8">
+                <div className="container search">
                         <form className="d-flex">
                             <input
                                 className="form-control w-100"
@@ -197,12 +208,10 @@ const studentPay=async(student)=>{
                 </tbody>
                 </table>
                 </div>
-
-                {/* To`lov oynasi */}
-              
                 </div>
               </div>
           </div>
+                {/* To`lov oynasi */}
           <div className={show?'d-block  vw-100 height position-absolute top-0 start-0 ':'d-none'}>
             <div className="container">
               <div className="row justify-content-center">
