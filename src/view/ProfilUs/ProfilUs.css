@@ -1,0 +1,41 @@
+.Profilup{
+  background-color: #efefef;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.Profilu0{
+  background-color: #efefef;
+}
+
+.Profilebuton{
+  width: 7%;
+  height: 10%;
+  color: #0d6efd;
+  margin-top: 3%;
+  margin-left: 46%;
+}
+
+.Profilue{
+  background-color: #efefef;
+  width: 100%;
+  justify-content: space-around;
+}
+  
+.Profilus{
+  width: 180px; 
+  border-radius: 10px;
+  margin-top: 12px;
+}
+
+.Profilew{
+  border-radius: 15px;
+}
+
+
+.Prog{
+  color: #2b2a2a;
+}
