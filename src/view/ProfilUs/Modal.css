@@ -1,0 +1,26 @@
+.ProfOqtuvchi{
+    font-size: 1.65rem;
+}
+
+.Profilinput{
+    width: 70%;
+    margin-left: 15%;
+}
+
+.ProfilFile{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.Profilbutton{
+    width: 30%;
+    margin-left: 35%;
+    margin-bottom: 5%;
+}
+
+.blurmodal{
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    display: 'block';
+    
+}
