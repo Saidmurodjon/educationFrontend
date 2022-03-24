@@ -12,6 +12,8 @@ function Router(){
          <Routes>
             <Route path='/payment' element={<Payment />} />
             <Route path='/profilus' element={<ProfilUs />} />
+        
+
          </Routes>
         </>
        );

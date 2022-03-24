@@ -4,10 +4,9 @@ var dateObj = new Date();
 function PaymentFilter(){
     const [pupils, setPupils]=useState([])
     const [students, setStudents]=useState([])
-    const [test,setTest]=useState([])
-    // const[w,setW]=useState([])
-    // const [group, setGroup]=useState([])
-    const[pupilPay,setPupilPay]=useState("")
+    // const [test,setTest]=useState([])
+   
+    // const[pupilPay,setPupilPay]=useState("")
 
       // console.log(typeof dateObj.getMonth())
     const options= [
@@ -70,60 +69,51 @@ function PaymentFilter(){
          getPupils() 
             
         },[])
-        // useEffect(()=>{
-        //     async function getGroup(){
-        //       const res = await axios.get('https://edu-uz.herokuapp.com//eduGroup')
-              
-        //         setGroup(res.data)
-        //      }
-        //      getGroup() 
-                
-        //     },[])
+   
 
-      useEffect(()=>{
-            setPupilPay(students)
-            pupils.map(val=>{
+      // useEffect(()=>{
+      //       setPupilPay(test)
+      //       pupils.map(val=>{
                
-                    val.paymet.find(a=>{
-                        if(a.month==dateObj.getMonth()){
-                          // 1-yol
-
-                       for (let i = 0; i < students.length; i++) {
-                            if(val._id===students[i]._id){
-                              // console.log(students[i]);
-                              students.splice(i,1)
-                               setTest(students)
-                            }
-                          }
+      //               val.paymet.find(a=>{
+      //                   if(a.month==dateObj.getMonth()+1){
+      //                     // 1-yol
+      //                  for (let i = 0; i < students.length; i++) {
+      //                       if(val._id==students[i]._id){
+      //                         students.splice(i,1)
+      //                       }
+      //                       setTest(students)
+      //                     }
                           
-                          // 2-yo'l
+      //                     // 2-yo'l
 
-                          // students.filter((a)=>{
-                          //   if(a._id==val._id){
-                          //     console.log(val)
-                          //     setTest(students)
-                          //   }
-                          // })
+      //                     // students.filter((a)=>{
+      //                     //   if(a._id==val._id){
+      //                     //     console.log(val)
+      //                     //     setTest(students)
+      //                     //   }
+      //                     // })
 
-                          // 3-yo'l
-                          // const p=students.findIndex(x=>x._id===val._id)
-                          // students.splice(p,1)
-                          // // !delete students[p]
-                          // setTest(students)
+      //                     // 3-yo'l
+      //                     // const p=students.findIndex(x=>x._id===val._id)
+      //                     // students.splice(p,1)
+      //                     // // !delete students[p]
+      //                     // setTest(students)
                           
 
-                        } 
-                      })
+      //                   } 
+      //                 })
                     
-                    })
-      },[pupilPay])
-             
+      //               })
+      //               console.log(test);
+      // },[pupilPay])
+   
     return(
         <>
             <div className="container">
                
-                <button className="btn btn-primary" onClick={()=>setPupilPay("ok")}>To'lov qilmagan O'quvchilar</button>
-              
+                {/* <button className="btn btn-primary" onClick={()=>F()}>To'lov qilmagan O'quvchilar</button> */}
+              <h2>To'lov qilmagan o'quvchilar</h2>
           <div className="">
                     
                     <table className="table w-100">
@@ -133,8 +123,7 @@ function PaymentFilter(){
                         <th scope="col">First</th>
                         <th scope="col">group</th>
                         <th scope="col">tel</th>
-                        {/* <th scope="col">Month</th> */}
-                        {/* <th scope="col">Cost</th> */}
+                        
                        </tr>
                     </thead>
                     <tbody >

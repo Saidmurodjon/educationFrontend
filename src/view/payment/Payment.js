@@ -1,11 +1,11 @@
 import React,{useState, useEffect} from "react"
 import axios from "axios"
 import './Payment.css';
-// var dateObj = new Date();
+
 // import PaymentFilter from "./PaymetFilter";
 
 function Payment(){
-
+  var dateObj = new Date();
   // bazadan kelgan malumotlar users groups
   const [users, setUsers]=useState([])
   const[groups,setGroups]=useState([])
@@ -21,9 +21,10 @@ function Payment(){
 
   // to'lov malumotlari yuboriladi  pupilPay
   const[pupilPay,setPupilPay]=useState({
-    month:'',
+    month:(dateObj.getMonth()+1).toString(),
     cost:''
   })
+  // console.log(pupilPay);
   // guruhlarni o'zaro solishtirish uchun asosan guruh to'lov qiymatini olish uchun
   const[group,setGroup]=useState([])
 
@@ -124,8 +125,8 @@ function Payment(){
     const pay=async (elem)=>{
         setShow(!show);
        setStudent(elem)
-       groups.map( ( foo ) => {
-        if(foo.name==elem.group){
+       groups.map((foo) => {
+        if(foo.name===elem.group){
           setGroup(foo)
         }
       });     
@@ -151,7 +152,7 @@ const studentPay=async(student)=>{
       alert("Maydonni to'ldiring !")
     }
   
-    if(res.request.status==200){  
+    if(res.request.status===200){  
       alert("To'lov muvaffqiyatli amalga oshirildi")
       // console.log( typeof res.request.status);
       setShow(!show); 
@@ -221,12 +222,14 @@ const studentPay=async(student)=>{
                     <h3>O'quvchi ismi: {student.name}</h3>
                     <p>Group: {student.group}</p>
                     <p>To'lov qiymati:  {group.price} so'm</p>
+
+                    {/* To'lov uchun qiymat kiritish qismi */}
                     <form action="">
-                      {/* <p className="d-inline">Chose month</p> */}
                     <select className="form-select d-inline w-100   payInput" id=""  
                         onChange={changeHandler} value={pupilPay.month} name="month">
                         {options.map(item => (
-                            <option key={item.value} value={item.value}>
+                            <option key={item.value} 
+                            value={item.value}>
                             {item.name}
                             </option>
                         ))}
@@ -241,7 +244,6 @@ const studentPay=async(student)=>{
                         value={pupilPay.cost}
                         onChange={changeHandler}
                     />
-                    {/* <input type="month" checked={"checked"} /> */}
                     </form>
                     <br />
                     <button className="btn btn-danger m-3 "
