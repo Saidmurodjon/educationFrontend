@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react"
 import axios from "axios"
 import './Payment.css';
 
-// import PaymentFilter from "./PaymetFilter";
+import PaymentFilter from "./PaymetFilter";
 
 function Payment(){
   var dateObj = new Date();
@@ -257,7 +257,7 @@ const studentPay=async(student)=>{
               </div>
             </div>
           </div>
-          {/* <PaymentFilter /> */}
+          <PaymentFilter />
        </>
     )
 }

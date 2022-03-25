@@ -4,61 +4,8 @@ var dateObj = new Date();
 function PaymentFilter(){
     const [pupils, setPupils]=useState([])
     const [students, setStudents]=useState([])
-    // const [test,setTest]=useState([])
-   
-    // const[pupilPay,setPupilPay]=useState("")
+    const [groups,setGroups]=useState([])
 
-      // console.log(typeof dateObj.getMonth())
-    const options= [
-        {
-          name: 'yanvar',
-          value: '1',
-        },
-        {
-          name: 'fevral',
-          value: '2',
-        },
-        {
-          name: 'mart',
-          value: '3',
-        },
-        {
-          name: 'aprel',
-          value: '4',
-        },
-           {
-          name: 'may',
-          value: '5',
-        },
-        {
-          name: 'iyun',
-          value: '6',
-        },
-        {
-          name: 'iyul',
-          value: '7',
-        },
-        {
-          name: 'avgust',
-          value: '8',
-        },
-        {
-            name: 'sentabr',
-            value: '9',
-          },
-          {
-            name: 'oktabr',
-            value: '10',
-          },
-          {
-            name: 'noyabr',
-            value: '11',
-          },
-          {
-            name: 'dekabr',
-            value: '12',
-          },
-      ]
     useEffect(()=>{
         async function getPupils(){
           const res = await axios.get('https://edu-uz.herokuapp.com/pupils')
@@ -69,80 +16,83 @@ function PaymentFilter(){
          getPupils() 
             
         },[])
+    useEffect(()=>{
+      async function getGroups(){
+        const res = await axios.get('https://edu-uz.herokuapp.com/eduGroup')
+        
+        setGroups(res.data)
+      }
+      getGroups() 
+              
+    },[])
    
+        useEffect(()=>{
+          for (let i = 0; i < pupils.length; i++) {
+            pupils[i].paymet.filter((elem)=>{
+              if(elem.month===(dateObj.getMonth()+1).toString()){
+                const p=students.findIndex(x=>x._id===pupils[i]._id)
+                      students.splice(p,1)
+              }
+            })                
+          }
+        })
 
-      // useEffect(()=>{
-      //       setPupilPay(test)
-      //       pupils.map(val=>{
-               
-      //               val.paymet.find(a=>{
-      //                   if(a.month==dateObj.getMonth()+1){
-      //                     // 1-yol
-      //                  for (let i = 0; i < students.length; i++) {
-      //                       if(val._id==students[i]._id){
-      //                         students.splice(i,1)
-      //                       }
-      //                       setTest(students)
-      //                     }
-                          
-      //                     // 2-yo'l
-
-      //                     // students.filter((a)=>{
-      //                     //   if(a._id==val._id){
-      //                     //     console.log(val)
-      //                     //     setTest(students)
-      //                     //   }
-      //                     // })
-
-      //                     // 3-yo'l
-      //                     // const p=students.findIndex(x=>x._id===val._id)
-      //                     // students.splice(p,1)
-      //                     // // !delete students[p]
-      //                     // setTest(students)
-                          
-
-      //                   } 
-      //                 })
-                    
-      //               })
-      //               console.log(test);
-      // },[pupilPay])
-   
     return(
         <>
             <div className="container">
                
                 {/* <button className="btn btn-primary" onClick={()=>F()}>To'lov qilmagan O'quvchilar</button> */}
-              <h2>To'lov qilmagan o'quvchilar</h2>
-          <div className="">
-                    
-                    <table className="table w-100">
+              <div className="borrower">
+                    <div className="row justify-content-center">
+                      <div className="col-md-4">
+                      <h2 className="">To'lov qilmagan o'quvchilar</h2>
+                      </div>
+                    </div>
+                    <div className="row justify-content-center">
+                      <div className="col-md-12">
+                      <table className="table table-bordered border-dark w-100">
                     <thead>
                       <tr>
                         <th scope="col">#</th>  
-                        <th scope="col">First</th>
-                        <th scope="col">group</th>
+                        <th scope="col">FirstName</th>
                         <th scope="col">tel</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">Qarzdor</th>
+
                         
                        </tr>
                     </thead>
                     <tbody >
                     {
-                        test.map((elem,index)=>{
+                        students.map((elem,index)=>{
+                          let p={}
+                          for (let i = 0; i < groups.length; i++) {
+                            if(elem.group===groups[i].name){
+                              p=groups[i]
+                            }
+                            
+                          }
                             return(
                               <tr key={elem._id}>
                                 <th scope="row">{index+1}</th>
-                                <td>{elem.name}</td>                                    
+                                <td>{elem.name}</td> 
+                                <td>{elem.tel}</td>                                    
                                 <td>{elem.group}</td>
-                                <td>{(dateObj.getMonth())+1}</td>
-                                {/* <td>{}</td> */}
+                                <td>{p.teacherName}</td>
+                                <td>{p.price} so'm</td>
+                                {/* <td>{}</td> */} 
                               </tr>
                           )
                         })
                     }  
                     </tbody>
                     </table>
+                      </div>
                     </div>
+                    
+                   
+              </div>
     
 
       
