@@ -155,7 +155,7 @@ const studentPay=async(student)=>{
     if(res.request.status===200){  
       alert("To'lov muvaffqiyatli amalga oshirildi")
       setShow(!show); 
-      const res = await axios.put(`http://localhost:5000/send/${student._id}`,pupilPay)
+      const res = await axios.put(`https://edu-uz.herokuapp.com/send/${student._id}`,pupilPay)
       // console.log( typeof res.request.status);
     }else{
       alert( "To'lov amalga oshirilmadi")
