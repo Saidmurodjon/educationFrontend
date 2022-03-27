@@ -1,8 +1,8 @@
-import React,{useState, useEffect} from "react"
-import axios from "axios"
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import './Payment.css';
-
 import PaymentFilter from "./PaymetFilter";
+
 
 function Payment(){
   var dateObj = new Date();
@@ -154,8 +154,9 @@ const studentPay=async(student)=>{
   
     if(res.request.status===200){  
       alert("To'lov muvaffqiyatli amalga oshirildi")
-      // console.log( typeof res.request.status);
       setShow(!show); 
+      const res = await axios.put(`http://localhost:5000/send/${student._id}`,pupilPay)
+      // console.log( typeof res.request.status);
     }else{
       alert( "To'lov amalga oshirilmadi")
     }
